@@ -25,9 +25,7 @@ function App() {
   useEffect(()=>{
     setConvertedAmount(amount*data[to]);
   },[amount,from,to])
-  // useEffect(()=>{
-  //   setAmount(convertedAmount*data2[from]);
-  // },[convertedAmount])
+
 
   
   return (
