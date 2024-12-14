@@ -6,7 +6,7 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  console.log(Conf)
+  
   return (
     <>
       <div>Blog Junction application</div>
