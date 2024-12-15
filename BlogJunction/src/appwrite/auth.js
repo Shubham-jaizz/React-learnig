@@ -28,7 +28,7 @@ class AuthService {
 
     async login({email,password}) {
         try {
-            return  await account.createEmailPasswordSession(email, password);
+            return  await this.account.createEmailPasswordSession(email, password);
        
         } catch (error) {
             console.error("Error while logging in appwrie"+ error);
