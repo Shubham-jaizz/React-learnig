@@ -19,6 +19,7 @@ class AuthService {
            return this.login({email,password})
         }else{
             return user; //
+
         }
         } catch (error) {
             throw error;
@@ -37,8 +38,9 @@ class AuthService {
     async getUser(){
         try {
             return await this.account.getUser();
+            
         } catch (error) {
-            console.error("error in Appwrite getuseer:::"+error);
+            console.error("error in Appwrite getuser:::"+error);
         }
         return null;
     }
@@ -51,6 +53,6 @@ class AuthService {
     }
 }
 
-const autService = new AuthService;
+const authService = new AuthService;
 
-export default autService
+export default authService
