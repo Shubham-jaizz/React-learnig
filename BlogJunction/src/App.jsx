@@ -1,30 +1,39 @@
-import { useState, useEffect } from 'react'
+import React,{ useState, useEffect } from 'react'
 import {useDispatch} from 'react-redux'
 import { login,logOut } from './app/authSlice'
 import authService from './appwrite/auth'
 import './App.css'
+import { Footer, Header } from '../components'
 
 function App() {
-  const [loading,setLoading] =  useState(true);
+  let [loading,setLoading] =  useState(true);
   const dispatch  = useDispatch();
 
   useEffect(()=>{
     authService.getUser()
-    .then((user)=>{
-      dispatch(login(user));
+    .then((userData)=>{
+       if (userData) {
+         dispatch(login(userData));
+       }else{
+        dispatch(logOut())
+       }
     }).catch((error)=>{
       console.error(error);
     })
-    .finally(
-      console.log("User in not Autheticated")
-    )
+    .finally(()=>setLoading(false));
   },[])
 
-  return (
-    <>
-      <div>So this is the blog app</div>
-    </>
-  )
+  return !loading ? (
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-500'>
+      <div className="w-full block">
+        <Header/>
+        <main>
+          {/* <Outlet/> */}
+        </main>
+        <Footer/>
+      </div>
+    </div>
+  ): null
 }
 
 export default App
