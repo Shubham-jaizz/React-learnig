@@ -4,6 +4,7 @@ import { login,logOut } from './app/authSlice'
 import authService from './appwrite/auth'
 import './App.css'
 import { Footer, Header } from '../components'
+import { Outlet } from 'react-router'
 
 function App() {
   let [loading,setLoading] =  useState(true);
@@ -24,11 +25,11 @@ function App() {
   },[])
 
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-500'>
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-500 hue-rotate-180'>
       <div className="w-full block">
         <Header/>
         <main>
-          {/* <Outlet/> */}
+        <Outlet />
         </main>
         <Footer/>
       </div>

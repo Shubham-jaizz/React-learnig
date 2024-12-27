@@ -37,7 +37,7 @@ class AuthService {
     }
     async getUser(){
         try {
-            return await this.account.getUser();
+            return await this.account.get();
             
         } catch (error) {
             console.error("error in Appwrite getuser:::"+error);

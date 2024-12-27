@@ -26,7 +26,7 @@ class Services {
             console.log("Error occured in document creation in database::"+error)
         }
     }
-    async updatePost(slug,{title,slug,content,featuredImage,status}){
+    async updatePost(slug,{title,content,featuredImage,status}){
         try {
             return await this.databases.updateDocument(
                 Conf.appwriteDatabase,
@@ -52,30 +52,29 @@ class Services {
     }
     async getPost(slug){
         try {
-           return await this.databases.deleteDocument(
+           return await this.databases.getDocument(
                 Conf.appwriteDatabase,
                 Conf.appwriteCollection,
-                slug,
+                slug
             );
             
         } catch (error) {
             console.log("Error occured in getPost in Appwrite:" + error);
+            return false
         }
     }
-    async listPost(){
+    async listPost(queries = [Query.equal("status", "active")]){
         try {
             return await this.databases.listDocuments(
                 Conf.appwriteDatabase,
                 Conf.appwriteCollection,
-                [
-                    Query.equal("status","active")
-    
-                ]
+                queries,
             );
         } catch (error) {
             console.log("this error is caused by the listPost appwrite::"+error)
+            return false;
         }
-        return null;
+        
     }
 
     //file upload services
@@ -114,6 +113,6 @@ class Services {
 
     }
 
-const databaseService = new Services;
+const DatabaseService = new Services;
 
-export default databaseService;
+export default DatabaseService;

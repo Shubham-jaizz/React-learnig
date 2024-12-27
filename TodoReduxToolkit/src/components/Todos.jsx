@@ -6,7 +6,11 @@ import { store } from '../app/store';
 
 function Todos() {
     const todos = useSelector(store => store.todos)
+    const status = useSelector(store => store.status)
+
     console.log(todos)
+    console.log(status)
+
     const dispatch = useDispatch();
     
   return (
